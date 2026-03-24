@@ -1,15 +1,29 @@
 import http from "http";
 import express, { Express } from "express";
+import swaggerUi from "swagger-ui-express";
+
+import createRouters from "./routes";
 
 const HTTP_PORT = 62501;
 //const HTTPS_PORT = 62502;
 
 const httpApp: Express = express();
-httpApp.get("/", (_req, res) => {
-  //res.redirect('/index.html')
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify({ data: { propA: 123, propB: "text" } }));
-});
+
+httpApp.use(express.static("swagger-doc"));
+httpApp.use(
+  "/docs",
+  swaggerUi.serve,
+  swaggerUi.setup(undefined, {
+    swaggerOptions: {
+      url: "/swagger.json",
+      displayRequestDuration: true,
+      tryItOutEnabled: true,
+    },
+  }),
+);
+
+const router = createRouters();
+httpApp.use("/", router);
 
 //httpApp.use(express.static('./game'));
 

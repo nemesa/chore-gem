@@ -1,0 +1,13 @@
+{
+  "entryFile": "src/api/index.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "spec": {
+    "name": "chore-gem API",
+    "outputDirectory": "swagger-doc",
+    "specVersion": 3
+  },
+  "routes": {
+    "routesDir": "swagger-doc"
+  },
+  "ignore": ["**/node_modules/**"]
+}
