@@ -4,7 +4,7 @@
   "description": "chore-gem",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-swagger-doc": "tsoa spec-and-routes",
+    "generate-swagger-doc": "tsoa spec",
     "server": "npm run generate-swagger-doc && ts-node ./src/api/index.ts",
     "dev": "ts-node ./src/api/index.ts"
   },

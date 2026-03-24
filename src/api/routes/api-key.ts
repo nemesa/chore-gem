@@ -1,18 +1,19 @@
-import { Route, Get, Tags } from "tsoa";
+import { Route, Get, Tags,Security } from "tsoa";
 import express, { Express, Router } from "express";
 import { ApiRouter } from "./index";
 
-const PUBLIC_ROUTE = "/public";
+const ROUTE = "/api-key";
 
 const paths = {
   GET_DEFAULT: "/",
 };
 
-@Route("/public")
-@Tags("Public")
-export default class PublicRoute implements ApiRouter {
+@Route("/api-key")
+@Tags("ApiKey")
+@Security("api_key")
+export default class ApiKeyRoute implements ApiRouter {
   public getRoute = () => {
-    return PUBLIC_ROUTE;
+    return ROUTE;
   };
   public geRouter = (): Router => {
     const router = express.Router();

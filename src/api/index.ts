@@ -1,6 +1,7 @@
 import http from "http";
 import express, { Express } from "express";
 import swaggerUi from "swagger-ui-express";
+import StorageService from "./services/storage";
 
 import createRouters from "./routes";
 
@@ -18,11 +19,15 @@ httpApp.use(
       url: "/swagger.json",
       displayRequestDuration: true,
       tryItOutEnabled: true,
+      persistAuthorization:true,
     },
   }),
 );
 
-const router = createRouters();
+const storageService = new StorageService();
+storageService.seed()
+
+const router = createRouters(storageService);
 httpApp.use("/", router);
 
 //httpApp.use(express.static('./game'));

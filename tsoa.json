@@ -4,7 +4,14 @@
   "spec": {
     "name": "chore-gem API",
     "outputDirectory": "swagger-doc",
-    "specVersion": 3
+    "specVersion": 3,
+    "securityDefinitions": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header"
+      }
+    }
   },
   "routes": {
     "routesDir": "swagger-doc"
